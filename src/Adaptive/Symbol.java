@@ -14,21 +14,13 @@ public class Symbol implements Comparable<Symbol>{
 		this.frequency = frequency;
 	}
 
-	Symbol(String letter, double p, double low, double high){
-		this.letter = letter;
-		this.probability = p;
-		this.low = low;
-		this.high = high;
-	}
-	
 	
 	@Override
-	public int compareTo(Symbol arg0) {
-		// TODO Auto-generated method stub
-		return letter.charAt(0) - arg0.letter.charAt(0);
+	public int compareTo(Symbol other) {
+		return letter.charAt(0) - other.letter.charAt(0);
 	}
 	
 	public String toString(){
-		return letter + " " + String.valueOf(frequency);
+		return letter + " " + frequency;
 	}
 }

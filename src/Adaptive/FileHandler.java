@@ -2,44 +2,41 @@ package Adaptive;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class FileHandler {
+class FileHandler {
 
 	private FileHandler(){}
 	
-	public static String readFile(String url, boolean withLineWrap){
-		String result = "";
+	static String readFile(String url, boolean withLineWrap){
+		StringBuilder result = new StringBuilder();
 		try {
 			FileReader fr = new FileReader(url);
 			BufferedReader br = new BufferedReader(fr);
-			String temp = null;
+			String temp ;
 			
 			if ( withLineWrap ) {
 				while ( ( temp=br.readLine() ) !=null ){
-					result += (temp+"\n");
+					result.append(temp).append("\n");
 				}
 			} 
 			else {
 				while ( ( temp=br.readLine() ) !=null ){
-					result += temp;
+					result.append(temp);
 				}
 			}
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return result;
+		return result.toString();
 	}
 
 	
-	public static void writeFile(String url, String text, boolean withLineWrap){
+	static void writeFile(String url, String text, boolean withLineWrap){
 		try {
 			FileWriter fw = new FileWriter(url);
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -55,15 +52,13 @@ public class FileHandler {
 			
 			System.out.println("Writing file completed!");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public static void writeSymbolToFile(String url, ArrayList<Symbol> symbolList) {
-		// TODO Auto-generated method stub
+	static void writeSymbolToFile(ArrayList<Symbol> symbolList) {
 		try {
-			FileWriter fw = new FileWriter(url);
+			FileWriter fw = new FileWriter("data/symboltable.txt");
 			BufferedWriter bw = new BufferedWriter(fw);
 			
 			for ( Symbol s: symbolList ){
@@ -83,7 +78,6 @@ public class FileHandler {
 			
 			System.out.println("Writing file completed!");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
